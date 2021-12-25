@@ -177,8 +177,31 @@ public class MyLinkedList {
 
     }
 
-    public void removeAllKey (int key) {
+    public ListNode removeAllKey (int key) {
 
+        if(this.head == null) {
+            return null;
+        }
+
+        ListNode prev = this.head;
+        ListNode cur = this.head.next;
+
+        while (cur != null) {
+            if(cur.value == key) {
+                prev.next = cur.next;
+                cur = cur.next;
+            }
+            else {
+                prev = cur;
+                cur = cur.next;
+            }
+        }
+
+        if(this.head.value == key) {
+            this.head = this.head.next;
+        }
+
+        return this.head;
     }
 
 
