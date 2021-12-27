@@ -205,6 +205,69 @@ public class MyLinkedList {
     }
 
 
+    public ListNode reverseList () {
+
+        if(this.head == null) {
+            return null;
+        }
+
+        ListNode cur = this.head;
+        ListNode prev = null;
+
+        while (cur != null) {
+            ListNode curNext = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = curNext;
+        }
+
+        return prev;
+    }
+
+    public ListNode middleNode () {
+        if(this.head == null) {
+            return null;
+        }
+        ListNode fast = this.head;
+        ListNode slow = this.head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            if (fast.next == null) {
+                return slow;
+            }
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    public ListNode findKthToTail (ListNode head, int k) {
+        if(this.head == null || k <= 0) {
+            return null;
+        }
+
+        ListNode fast = this.head;
+        ListNode slow = this.head;
+
+        /*
+        while (k > 0) {
+            fast = fast.next;
+            k--;
+        }*/
+
+        while (fast != null){
+            if(k - 1 != 0) {
+                fast = fast.next;
+                if(fast == null) {
+                    return null;
+                }
+                k--;
+                continue;
+            }
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
 
 
 }

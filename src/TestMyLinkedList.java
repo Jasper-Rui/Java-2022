@@ -30,7 +30,11 @@ public class TestMyLinkedList {
 
         myLinkedList.remove(1111);
         myLinkedList.display();
+        myLinkedList.head = myLinkedList.reverseList();
 
+        System.out.println();
+
+        myLinkedList.display();
 
 
     }
