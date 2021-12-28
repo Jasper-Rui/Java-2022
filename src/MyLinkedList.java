@@ -48,6 +48,14 @@ public class MyLinkedList {
         }
     }
 
+    public void display2 (ListNode node) {
+        while (node != null) {
+            System.out.print(node.value + " ");
+            node = node.next;
+        }
+    }
+
+
     //check if contain
     public boolean contain (int key) {
         ListNode current = this.head;
