@@ -37,6 +37,86 @@ public class TestMyLinkedList {
         return head.next;
     }
 
+
+    public static ListNode partition(ListNode head, int x) {
+        ListNode beforeStart = null;
+        ListNode beforeEnd = null;
+        ListNode afterStart = null;
+        ListNode afterEnd = null;
+
+        ListNode cur = head;
+
+        while (cur != null) {
+            if(cur.value < x) {
+                //first time
+                if(beforeStart == null){
+                    beforeStart = cur;
+                    beforeEnd = cur;
+                }
+                //non - first time
+                else {
+                    beforeEnd.next = cur;
+                    beforeEnd = beforeEnd.next;
+                }
+            }
+            else {
+                if(afterStart == null) {
+                    afterStart = cur;
+                    afterEnd = cur;
+                }
+                else {
+                    afterEnd.next = cur;
+                    afterEnd = afterEnd.next;
+                }
+            }
+            cur = cur.next;
+        }
+        //question
+        //will all values will smaller than x?
+        //what if every value is smaller than x?
+
+        if(beforeStart == null) {
+            return afterStart;
+        }
+
+        beforeEnd.next = afterStart;
+
+        if(afterStart != null) {
+            afterEnd.next = null;
+        }
+        return beforeStart;
+    }
+
+
+    public static ListNode deleteDuplicates(ListNode head) {
+        ListNode cur = head;
+        ListNode newHead = new ListNode(-1);
+        ListNode temp = newHead;
+
+        while (cur != null) {
+            if(cur.next != null && cur.value == cur.next.value) {
+                while (cur.next != null && cur.value == cur.next.value) {
+                    cur = cur.next;
+                }
+                cur = cur.next;
+            }
+            else {
+                temp.next = cur;
+                cur = cur.next;
+                temp = temp.next;
+            }
+        }
+
+        //avoid last node is duplicated as well, so set the last non-repeated node next to null
+        temp.next = null;
+        return newHead.next;
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addLast(12);
