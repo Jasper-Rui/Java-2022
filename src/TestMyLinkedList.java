@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -112,6 +114,123 @@ public class TestMyLinkedList {
         return newHead.next;
     }
 
+
+    public boolean isPalindrome(ListNode head) {
+        if(head == null) {
+            return false;
+        }
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+
+        ListNode cur = slow.next;
+
+        while (cur != null) {
+            ListNode curNext = cur.next;
+            cur.next = slow;
+            slow = cur;
+            cur = curNext;
+        }
+
+        while (head != slow) {
+            if(head.value != slow.value) {
+                return false;
+            }
+            //even situation
+            if(head.next == slow){
+                return true;
+            }
+            head = head.next;
+            slow = slow.next;
+        }
+        return true;
+    }
+
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) {
+            return null;
+        }
+
+        //1. intersection is Y or X ?
+        // Y
+        //2. the intersection is val or the address?
+        // address
+
+        ListNode l1 = headA;
+        ListNode l2 = headB;
+
+        int len1 = 0;
+        int len2 = 0;
+
+        while (l1 != null) {
+            len1++;
+            l1 = l1.next;
+        }
+        //l1 == null
+        l1 = headA;
+
+        while (l2 != null) {
+            len2++;
+            l2 = l2.next;
+        }
+        //l2 == null
+        l2 = headB;
+
+        int len = len1 - len2;
+
+        if(len < 0) {
+            l1 = headB;
+            l2 = headA;
+            len = len2 - len1;
+        }
+
+        //l1 go len steps
+        //then l1 and l2 move together till they meet
+
+        while (len != 0) {
+            l1 = l1.next;
+            len--;
+        }
+
+        //they start moving together
+        while (l1 != l2) {
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        //there are two situation
+        //one is they meet
+        //2nd is they never meet, and they all move to the last node
+        //to avoid 2nd situation
+        if(l1 == null) {
+            return null;
+        }
+        return l1;
+    }
+
+    public boolean hasCycle(ListNode head) {
+        if(head == null) return false;
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 
