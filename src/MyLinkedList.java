@@ -277,5 +277,14 @@ public class MyLinkedList {
         return slow;
     }
 
+    public void createLoop () {
+        ListNode cur = this.head;
+        while (cur != null) {
+            cur = cur.next;
+        }
+        cur.next = this.head.next.next;
+    }
+
+
 
 }

@@ -232,11 +232,54 @@ public class TestMyLinkedList {
         return false;
     }
 
+    public ListNode detectCycle(ListNode head) {
+        if(head == null) return null;
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if(slow == fast){
+                break;
+            }
+        }
+
+        //there are two situations here
+        //1 is slow == fast, loop breaks
+        //2 fast is null or fast.next is null
+        if(fast == null || fast.next == null) return null;
+
+        fast = head;
+        while (fast != slow) {
+            slow = slow.next;
+            fast = fast.next;
+            if(fast == slow){
+                break;
+            }
+        }
+        return slow;
+    }
 
 
 
 
     public static void main(String[] args) {
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.addLast(12);
+        myLinkedList.addLast(13);
+        myLinkedList.addLast(15);
+        myLinkedList.addLast(24);
+        myLinkedList.addLast(133);
+        myLinkedList.createLoop();
+    }
+
+
+
+
+
+
+    public static void main2(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addLast(12);
         myLinkedList.addLast(13);
