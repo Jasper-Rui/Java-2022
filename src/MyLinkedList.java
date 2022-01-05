@@ -285,6 +285,51 @@ public class MyLinkedList {
         cur.next = this.head.next.next;
     }
 
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head == null) {
+            return null;
+        }
+        if(head.next == null) {
+            return head;
+        }
 
+        ListNode leftnode = head;
+        if(head.value == left){
+            leftnode = head;
+        }
+        else{
+            while (leftnode.next.value != left) {
+                leftnode = leftnode.next;
+            }
+        }
+
+        ListNode rightnode = head;
+        while (rightnode.value != right) {
+            rightnode = rightnode.next;
+        }
+        rightnode = rightnode.next;
+
+        //move cur to left
+        ListNode cur = head;
+        while (cur.value != left) {
+            cur = cur.next;
+        }
+
+        ListNode prev = cur;
+        while (cur != rightnode) {
+            ListNode temp = cur.next;
+            //potential error
+            if(cur.value == left) {
+                cur.next = rightnode;
+            }
+            else {
+                cur.next = prev;
+            }
+            prev = cur;
+            cur = temp;
+        }
+        leftnode.next = prev;
+        return head;
+    }
 
 }

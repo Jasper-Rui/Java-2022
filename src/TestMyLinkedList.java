@@ -264,14 +264,19 @@ public class TestMyLinkedList {
 
 
 
+
+
     public static void main(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
-        myLinkedList.addLast(12);
-        myLinkedList.addLast(13);
-        myLinkedList.addLast(15);
-        myLinkedList.addLast(24);
-        myLinkedList.addLast(133);
-        myLinkedList.createLoop();
+        myLinkedList.addLast(1);
+        myLinkedList.addLast(2);
+        myLinkedList.addLast(3);
+        myLinkedList.addLast(4);
+        myLinkedList.addLast(5);
+        myLinkedList.reverseBetween(myLinkedList.head, 2, 4);
+        myLinkedList.display();
+
+        //myLinkedList.createLoop();
     }
 
 
