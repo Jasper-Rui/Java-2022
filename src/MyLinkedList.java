@@ -285,7 +285,52 @@ public class MyLinkedList {
         cur.next = this.head.next.next;
     }
 
+
     public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head == null) {
+            return null;
+        }
+        if(left == right) {
+            return head;
+        }
+
+        if(head.value == left && head.next.value == right) {
+            head.next.next = head;
+            head = head.next;
+            head.next = null;
+            return head;
+        }
+
+
+        ListNode prev = null, leftnode = head;
+        while (leftnode.value != left) {
+            prev = leftnode;
+            leftnode = leftnode.next;
+        }
+        ListNode temp = prev;
+
+        ListNode rightnode = head;
+        while (rightnode.value != right) {
+            rightnode = rightnode.next;
+        }
+        if(rightnode.next != null) rightnode = rightnode.next;
+        //find right target next node
+
+        while (leftnode != rightnode) {
+            ListNode curNext = leftnode.next;
+            leftnode.next = prev;
+            prev = leftnode;
+            leftnode = curNext;
+        }
+
+        temp.next.next = rightnode;
+        temp.next = prev;
+        return head;
+    }
+
+
+
+    public ListNode reverseBetween1(ListNode head, int left, int right) {
         if(head == null) {
             return null;
         }
@@ -330,6 +375,12 @@ public class MyLinkedList {
         }
         leftnode.next = prev;
         return head;
+    }
+
+
+    public ListNode reverseBetween3(ListNode head, int left, int right) {
+        //node: left and right are index
+        return null;
     }
 
 }

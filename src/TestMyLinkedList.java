@@ -270,10 +270,7 @@ public class TestMyLinkedList {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addLast(1);
         myLinkedList.addLast(2);
-        myLinkedList.addLast(3);
-        myLinkedList.addLast(4);
-        myLinkedList.addLast(5);
-        myLinkedList.reverseBetween(myLinkedList.head, 2, 4);
+        myLinkedList.reverseBetween(myLinkedList.head, 1, 2);
         myLinkedList.display();
 
         //myLinkedList.createLoop();
