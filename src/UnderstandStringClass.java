@@ -1,5 +1,6 @@
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +13,74 @@ import java.util.Arrays;
 public class UnderstandStringClass {
 
     public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("abcd");
+        sb.append("Jasper");
+        System.out.println(sb);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("Jasper");
+        System.out.println(stringBuffer);
+
+        sb.reverse();
+        System.out.println(sb);
+
+    }
+
+    public static void main26(String[] args) {
+        String str = "Jasper";
+        String ret = str.concat(" is the best");
+        System.out.println(ret);
+        String strr = "";
+        System.out.println(strr.isEmpty());
+        System.out.println(str.isEmpty());
+    }
+
+    public static void main25(String[] args) {
+        String str = "              jasper              ";
+        System.out.println(str.trim());
+        System.out.println(str.toLowerCase());
+        System.out.println(str.trim().toUpperCase());
+    }
+
+    public static void main24(String[] args) {
+        String str = "Jasper";
+        String ret = str.substring(2, 4);
+        System.out.println(ret);
+    }
+
+    public static void main23(String[] args) {
+        String str = "Java30 12&21#hello";
+        String[] strings = str.split(" |&|#");
+        System.out.println(Arrays.toString(strings));
+    }
+
+    public static void main22(String[] args) {
+        String str = "192.168.1.1";
+        String[] strings = str.split("\\.", 2);
+        System.out.println(Arrays.toString(strings));
+
+        String str1 = "192\\168\\1\\1";
+        String[] stringss = str1.split("\\\\"); // "\\\\" -> "\\" -> \
+        System.out.println(Arrays.toString(stringss));
+    }
+
+    public static void main20(String[] args) {
+        String str = "Jasper&jasper&haorui&hao";
+        String[] strings = str.split("&");
+        System.out.println(Arrays.toString(strings));
+    }
+
+    public static void main19(String[] args) {
+        String str = "Jasper is jasper and jasper is Jasper";
+        String ret = str.replace('J', 'Y');
+        System.out.println(ret);
+        String ret2 = str.replace("Jasper", "haorui");
+        System.out.println(ret2);
+        String ret3 = str.replaceFirst("Jasper", "haorui");
+        System.out.println(ret3);
+    }
+
+    public static void main17(String[] args) {
         String str = "abcdefgabcd";
         String tmp = "abcd";
         int index = str.lastIndexOf(tmp, 5);
