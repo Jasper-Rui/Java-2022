@@ -1,3 +1,5 @@
+import javax.lang.model.type.ArrayType;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -8,7 +10,24 @@
  */
 public class UnderstandExceptions {
 
+    public static void func (int x) throws ArithmeticException {
+        if(x == 0) {
+            throw new RuntimeException("x is / by 0");
+        }
+    }
+
     public static void main(String[] args) {
+        try {
+            func(0);
+        }
+        catch (ArithmeticException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static void main11(String[] args) {
 
         int[] array =  {1, 2, 3, 4};
         try{
