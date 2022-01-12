@@ -10,9 +10,48 @@ import java.util.*;
  * Time: 21:00
  * Description:
  */
-public class UnderstandCollection {
 
+
+    //E means, current class is a generic class
+    //
+class MyArrayList<E> {
+    private E[] elem;
+    private int usedSize;
+    public MyArrayList() {
+        this.elem = (E[])new Object[10];
+        //this.elem = new E[10];
+    }
+    public void add(E val) {
+        this.elem[usedSize] = val;
+        usedSize++;
+    }
+    public E get(int pos) {
+        return this.elem[pos];
+    }
+
+    /*public <T> T[] getArray(int size) {
+        T[] genericArray = new T[size]; // suppose this is allowed
+        return genericArray;
+    }*/
+
+    public Object[] getArray(int size) {
+        Object[] genericArray = new Object[size];
+        return genericArray;
+    }
+
+}
+
+public class UnderstandCollection {
     public static void main(String[] args) {
+        MyArrayList<String> myArrayList1 = new MyArrayList<>();
+        System.out.println(myArrayList1);
+        MyArrayList<Integer> myArrayList2 = new MyArrayList<>();
+        System.out.println(myArrayList2);
+        MyArrayList<Boolean> myArrayList3 = new MyArrayList<>();
+        System.out.println(myArrayList3);
+    }
+
+    public static void main4(String[] args) {
         Map<String, String> map = new HashMap<>();
         map.put("Jasper", "No.1");
         map.put("Haorui", "No.2");
