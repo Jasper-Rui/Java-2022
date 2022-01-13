@@ -35,7 +35,9 @@ public class TestIterator {
         System.out.println(list2);
         //[abc, hello, bit, Jasper, haha, a, b, c]
 
-        
+        String ret = list2.remove(0);
+        System.out.println(ret);
+        System.out.println(list2);
     }
 
     public static void main4(String[] args) {
