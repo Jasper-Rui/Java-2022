@@ -71,13 +71,36 @@ public class Poker {
 
     public static void main(String[] args) {
 
-        List<Card> list = BuyCrad();
-        System.out.println(list);
+        List<Card> cards = BuyCrad();
+        System.out.println(cards);
         //initialize cards
 
         //shuffle cards
-        shuffle(list);
-        System.out.println(list);
+        shuffle(cards);
+        System.out.println(cards);
+
+        System.out.println("Each player get 5 cards");
+        ArrayList <List<Card>> users = new ArrayList<>();
+        List<Card> user1 = new ArrayList<>();
+        List<Card> user2 = new ArrayList<>();
+        List<Card> user3 = new ArrayList<>();
+
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 3; j++) {
+                Card card = cards.remove(0);
+                users.get(j).add(card);
+            }
+        }
+
+        System.out.println("User1 cards " + user1);
+        System.out.println("User2 cards " + user2);
+        System.out.println("User3 cards " + user3);
+        System.out.println("Rest cards " + cards);
 
     }
 }
