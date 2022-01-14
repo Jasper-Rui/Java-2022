@@ -1,6 +1,5 @@
-import jdk.internal.util.ArraysSupport;
+package UpgradedArrayLIst;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
