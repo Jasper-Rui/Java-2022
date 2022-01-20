@@ -18,5 +18,15 @@ public class TestMyBTree {
         System.out.println(myBinaryTree.getHeight(btNode));
         System.out.println(myBinaryTree.find(btNode, 'N'));
         System.out.println(myBinaryTree.isCompleteTree(btNode));
+
+
+        System.out.println(true && true);
+        System.out.println(true && false);
+        System.out.println(false && true);
+        System.out.println(false && false);
+        System.out.println(true || true);
+        System.out.println(true || false);
+        System.out.println(false || true);
+        System.out.println(false || false);
     }
 }

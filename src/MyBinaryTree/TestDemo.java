@@ -105,19 +105,19 @@ public class TestDemo {
         }
 
 
-        Integer integer = new Integer(1);
-        Integer integer1 = integer;
-        dosomething(integer1);
+        //Integer integer = new Integer(1);
+        //Integer integer1 = integer;
+        //dosomething(integer1);
         System.out.println();
-        System.out.println(integer1);
-        System.out.println(integer == integer1);
+        //System.out.println(integer1);
+        //System.out.println(integer == integer1);
 
-
+        System.out.println(false && false);
 
 
     }
 
-    public static void  dosomething (Integer integer) { integer = new Integer(2); }
+    //public static void  dosomething (Integer integer) { integer = new Integer(2); }
 
 
     static boolean out (char c) {
