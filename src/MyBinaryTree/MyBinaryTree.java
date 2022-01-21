@@ -1,9 +1,6 @@
 package MyBinaryTree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,13 +12,13 @@ import java.util.Stack;
  */
 
 
-class BTNode {
+class TreeNode {
 
     public char val;
-    public BTNode left;
-    public BTNode right;
+    public TreeNode left;
+    public TreeNode right;
 
-    public BTNode(char val) {
+    public TreeNode(char val) {
         this.val = val;
     }
 
@@ -31,19 +28,19 @@ class BTNode {
 
 public class MyBinaryTree {
 
-    public BTNode root;
+    public TreeNode root;
     public int treeSize;
 
-    public BTNode createTree() {
+    public TreeNode createTree() {
 
-        BTNode A = new BTNode('A');
-        BTNode B = new BTNode('B');
-        BTNode C = new BTNode('C');
-        BTNode D = new BTNode('D');
-        BTNode E = new BTNode('E');
-        BTNode F = new BTNode('F');
-        BTNode G = new BTNode('G');
-        BTNode H = new BTNode('H');
+        TreeNode A = new TreeNode('A');
+        TreeNode B = new TreeNode('B');
+        TreeNode C = new TreeNode('C');
+        TreeNode D = new TreeNode('D');
+        TreeNode E = new TreeNode('E');
+        TreeNode F = new TreeNode('F');
+        TreeNode G = new TreeNode('G');
+        TreeNode H = new TreeNode('H');
 
         A.left = B;
         A.right = C;
@@ -53,13 +50,13 @@ public class MyBinaryTree {
         C.left = F;
         C.right = G;
 
-        //E.right = H;
+        E.right = H;
 
         return A;
     }
 
 
-    public void preOrder (BTNode root) {
+    public void preOrder (TreeNode root) {
         if(root == null) {
             return;
         }
@@ -69,7 +66,7 @@ public class MyBinaryTree {
         preOrder(root.right);
     }
 
-    public void inOrder (BTNode root) {
+    public void inOrder (TreeNode root) {
         if(root == null) {
             return;
         }
@@ -80,7 +77,7 @@ public class MyBinaryTree {
 
 
 
-    public void postOrder (BTNode root) {
+    public void postOrder (TreeNode root) {
         if(root == null) {
             return;
         }
@@ -92,7 +89,7 @@ public class MyBinaryTree {
 
 
 
-    public int size (BTNode root) {
+    public int size (TreeNode root) {
         if(root == null) {
             return 0;
         }
@@ -104,7 +101,7 @@ public class MyBinaryTree {
     }
 
 
-    public int sizeSub (BTNode root) {
+    public int sizeSub (TreeNode root) {
 
         if(root == null) {
             return 0;
@@ -120,7 +117,7 @@ public class MyBinaryTree {
 
     public int leaves;
 
-    public int getLeafNodeCount (BTNode root) {
+    public int getLeafNodeCount (TreeNode root) {
         if(root == null) {
             return 0;
         }
@@ -132,7 +129,7 @@ public class MyBinaryTree {
         return leaves;
     }
 
-    public int getLeafNodeCountSub (BTNode root) {
+    public int getLeafNodeCountSub (TreeNode root) {
         if(root == null) {
             return 0;
         }
@@ -143,7 +140,7 @@ public class MyBinaryTree {
     }
 
 
-    public int getKLevelNodeCount (BTNode root, int k) {
+    public int getKLevelNodeCount (TreeNode root, int k) {
         if(k < 0) throw new RuntimeException("Invalid k level");
         if (root == null) return 0;
         if (k == 1) return 1;
@@ -151,7 +148,7 @@ public class MyBinaryTree {
         return getKLevelNodeCount(root.right , k - 1) + getKLevelNodeCount(root.left , k - 1);
     }
 
-    public int getHeight (BTNode root) {
+    public int getHeight (TreeNode root) {
         if (root == null) return 0;
 
         if(root.right == null && root.left == null) {
@@ -160,24 +157,24 @@ public class MyBinaryTree {
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
-    public BTNode find (BTNode root, char val) {
+    public TreeNode find (TreeNode root, char val) {
         if(root == null) return null;
         if(root.val == val) return root;
 
-        BTNode rst1 = find(root.right, val);
-        BTNode rst2 = find(root.left, val);
+        TreeNode rst1 = find(root.right, val);
+        TreeNode rst2 = find(root.left, val);
 
         if(rst2 == null) return rst1;
         return rst2;
     }
 
-    public boolean isCompleteTree1 (BTNode root) {
+    public boolean isCompleteTree1 (TreeNode root) {
 
         if(root == null) return false;
-        Queue<BTNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
-        BTNode temp;
+        TreeNode temp;
         while (!queue.isEmpty()) {
             temp = queue.poll();
             if(temp.right != null && temp.left != null) {
@@ -195,13 +192,13 @@ public class MyBinaryTree {
         return true;
     }
 
-    public boolean isCompleteTree (BTNode root) {
+    public boolean isCompleteTree (TreeNode root) {
 
         if(root == null) return false;
-        Queue<BTNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
-        BTNode temp;
+        TreeNode temp;
         while (!queue.isEmpty()) {
             temp = queue.poll();
             if(temp != null) {
@@ -214,7 +211,7 @@ public class MyBinaryTree {
         }
 
         while (!queue.isEmpty()) {
-            BTNode node = queue.peek();
+            TreeNode node = queue.peek();
             if(node != null) {
                 return false;
             }
@@ -222,6 +219,92 @@ public class MyBinaryTree {
         }
 
         return true;
+    }
+
+
+
+/*    public void levelOrder(TreeNode root) {
+        if(root == null) return;
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+
+            //if empty, it means one layer of tree is done doing traversal
+            if(queue.isEmpty()) {
+                List<TreeNode> list = new ArrayList<TreeNode>();
+            }
+
+            if(node.left != null) {
+                queue.offer(node.left);
+            }
+            if(node.right != null) {
+                queue.offer(node.right);
+            }
+            System.out.print(node.val + " ");
+        }
+    }*/
+
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        if(root == null) {
+            return null;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            //size represent current number of nodes
+            List<Integer> list1 = new ArrayList<>();
+            while (size != 0) {
+                TreeNode node = queue.poll();
+                //list1.add(node.val);
+                size--;
+                if(node.left != null) {
+                    queue.offer(node.left);
+                }
+                if(node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            list.add(list1);
+        }
+
+        return list;
+    }
+
+
+
+    public Stack<TreeNode> path = new Stack<>();;
+
+
+    public boolean getPath (TreeNode root, TreeNode node, Stack<TreeNode> stack) {
+        if(root == null || node == null) return false;
+
+        stack.push(root);
+
+        if(root == node) {
+            return true;
+        }
+
+        boolean flg = getPath(root.left, node, stack);
+        if(flg == true) {
+            return true;
+        }
+
+        flg = getPath(root.right, node, stack);
+        if(flg == true) {
+            return true;
+        }
+
+        stack.pop();
+        return false;
+
     }
 
 

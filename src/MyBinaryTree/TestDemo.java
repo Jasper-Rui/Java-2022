@@ -50,7 +50,7 @@ public class TestDemo {
 
     public static void main(String[] args) {
         MyBinaryTree myBinaryTree = new MyBinaryTree();
-        BTNode root = myBinaryTree.createTree();
+        TreeNode root = myBinaryTree.createTree();
         myBinaryTree.preOrder(root);
         System.out.println();
         myBinaryTree.inOrder(root);

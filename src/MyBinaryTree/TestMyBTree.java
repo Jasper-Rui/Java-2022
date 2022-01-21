@@ -1,5 +1,8 @@
 package MyBinaryTree;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -11,22 +14,18 @@ package MyBinaryTree;
 public class TestMyBTree {
     public static void main(String[] args) {
         MyBinaryTree myBinaryTree = new MyBinaryTree();
-        BTNode btNode = myBinaryTree.createTree();
+        TreeNode btNode = myBinaryTree.createTree();
         System.out.println(myBinaryTree.sizeSub(btNode));
         System.out.println(myBinaryTree.getLeafNodeCount(btNode));
         System.out.println(myBinaryTree.getKLevelNodeCount(btNode, 3));
         System.out.println(myBinaryTree.getHeight(btNode));
         System.out.println(myBinaryTree.find(btNode, 'N'));
         System.out.println(myBinaryTree.isCompleteTree(btNode));
+        myBinaryTree.levelOrder(btNode);
 
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        hashMap.containsKey(1);
+        hashMap.size();
 
-        System.out.println(true && true);
-        System.out.println(true && false);
-        System.out.println(false && true);
-        System.out.println(false && false);
-        System.out.println(true || true);
-        System.out.println(true || false);
-        System.out.println(false || true);
-        System.out.println(false || false);
     }
 }
