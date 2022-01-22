@@ -32,8 +32,22 @@ public class MyBinaryTree {
     public int treeSize;
 
     public TreeNode createTree() {
-
-        TreeNode A = new TreeNode('A');
+        //[1,3,2,5,3,null,9]
+        TreeNode A = new TreeNode('1');
+        TreeNode B = new TreeNode('3');
+        TreeNode C = new TreeNode('2');
+        TreeNode D = new TreeNode('5');
+        TreeNode E = new TreeNode('3');
+        TreeNode F = new TreeNode(' ');
+        TreeNode G = new TreeNode('9');
+        //TreeNode H = new TreeNode('H');
+        A.left = B;
+        A.right = C;
+        B.left = D;
+        B.right = E;
+        C.right = G;
+        C.left = null;
+        /*TreeNode A = new TreeNode('A');
         TreeNode B = new TreeNode('B');
         TreeNode C = new TreeNode('C');
         TreeNode D = new TreeNode('D');
@@ -50,7 +64,7 @@ public class MyBinaryTree {
         C.left = F;
         C.right = G;
 
-        E.right = H;
+        E.right = H;*/
 
         return A;
     }
@@ -247,9 +261,8 @@ public class MyBinaryTree {
         }
     }*/
 
-
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
+    public List<List<TreeNode>> levelOrder(TreeNode root) {
+        List<List<TreeNode>> list = new ArrayList<>();
         if(root == null) {
             return null;
         }
@@ -260,10 +273,10 @@ public class MyBinaryTree {
         while (!queue.isEmpty()) {
             int size = queue.size();
             //size represent current number of nodes
-            List<Integer> list1 = new ArrayList<>();
+            List<TreeNode> list1 = new ArrayList<>();
             while (size != 0) {
                 TreeNode node = queue.poll();
-                //list1.add(node.val);
+                list1.add(node);
                 size--;
                 if(node.left != null) {
                     queue.offer(node.left);
@@ -278,6 +291,18 @@ public class MyBinaryTree {
         return list;
     }
 
+    public int widthOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
+        List<List<TreeNode>> list = levelOrder(root);
+        int max = 0;
+        for(int i = 0; i < list.size(); i++) {
+            int size = list.get(i).size();
+            if(size > max) {
+                max = size;
+            }
+        }
+        return max;
+    }
 
 
     public Stack<TreeNode> path = new Stack<>();;
@@ -308,4 +333,19 @@ public class MyBinaryTree {
     }
 
 
+    public void preorderWithoutRecursion (TreeNode root) {
+        if(root == null) return;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        TreeNode cur = root;
+        while (cur != null || !stack.empty()) {
+            while (cur != null) {
+                stack.push(cur);
+                //System.out.printf(cur.val);
+                cur = cur.left;
+            }
+            TreeNode top = stack.pop();
+            cur = top.right;
+        }
+    }
 }
