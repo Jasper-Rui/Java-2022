@@ -27,7 +27,7 @@ public class MyHeap {
 
         //1. at least the parent has a left child
         while (child < len) {
-            if((child + 1) < this.usedSize && this.elem[child] < this.elem[child + 1]) {
+            if((child + 1) < len && this.elem[child] < this.elem[child + 1]) {
                 child++;
             }
             //swap if child is larger than parent
@@ -37,7 +37,6 @@ public class MyHeap {
                 this.elem[parent] = temp;
                 parent = child;
                 child = parent * 2 + 1;
-                //shiftDown(child, len);
             }
             else{
                 break;
@@ -59,7 +58,7 @@ public class MyHeap {
     private void shiftUp (int child) {
         int parent = (child - 1) / 2;
         while (child > 0) {
-            if(this.elem[parent] > this.elem[child]) {
+            if(this.elem[child] > this.elem[parent]) {
                 int temp = this.elem[child];
                 this.elem[child] = this.elem[parent];
                 this.elem[parent] = temp;
@@ -77,20 +76,50 @@ public class MyHeap {
             this.elem = Arrays.copyOf(this.elem, 2 * this.elem.length);
         }
         this.elem[this.usedSize++] = value;
-
-        //
         shiftUp(this.usedSize - 1);
-
     }
 
-    public boolean isFull () { return this.usedSize == elem.length;}
+    public boolean isFull () { return this.usedSize == this.elem.length;}
+
+    public int poll () {
+        if(isEmpty()) {
+            throw new RuntimeException("PriorityQueue is empty");
+        }
+        int temp = this.elem[0];
+        this.elem[0] = this.elem[this.usedSize - 1];
+        this.elem[this.usedSize - 1] = temp;
+        this.usedSize--;
+
+        shiftDown(0, this.usedSize);
+        return temp;
+    }
+
+    public boolean isEmpty () {
+        return this.usedSize == 0;
+    }
+
+
+    public int peek () {
+        if(isEmpty()) {
+            throw new RuntimeException("PriorityQueue is empty");
+        }
+        return this.elem[0];
+    }
 
 
 
+    public void headSort () {
 
+        int end = this.usedSize - 1;
 
-
-
+        while (end != 0) {
+            int temp = this.elem[end];
+            this.elem[end] = this.elem[0];
+            this.elem[0] = temp;
+            shiftDown(0, end);
+            end--;
+        }
+    }
 
 
 

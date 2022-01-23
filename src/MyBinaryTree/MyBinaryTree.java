@@ -336,7 +336,6 @@ public class MyBinaryTree {
     public void preorderWithoutRecursion (TreeNode root) {
         if(root == null) return;
         Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
         TreeNode cur = root;
         while (cur != null || !stack.empty()) {
             while (cur != null) {

@@ -12,6 +12,13 @@ import java.util.*;
  */
 public class TestMyBTree {
     public static void main(String[] args) {
+        int[] array = new int[];
+    }
+
+
+
+
+    public static void main1(String[] args) {
         MyBinaryTree myBinaryTree = new MyBinaryTree();
         TreeNode btNode = myBinaryTree.createTree();
         /*System.out.println(myBinaryTree.sizeSub(btNode));
