@@ -12,7 +12,8 @@ import java.util.*;
  */
 public class TestMyBTree {
     public static void main(String[] args) {
-        int[] array = new int[];
+        int[] array = new int[10];
+
     }
 
 

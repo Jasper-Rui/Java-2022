@@ -15,7 +15,7 @@ public class InsertionSort {
 
 
     /**
-     * stable sort
+     * stable sort if it preserves the order of duplicate keys
      * Time complexity O(n^2)
      *          best is O(n)
      * Space complexity O(1)
