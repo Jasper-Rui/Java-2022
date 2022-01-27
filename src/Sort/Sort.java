@@ -14,6 +14,22 @@ import java.util.Random;
 public class Sort {
     //ShellSort a.k.a. Diminishing Increment Sort
 
+    public static void insertionSortDay2 (int[] array) {
+        for(int i = 1; i < array.length; i++) {
+            int temp = array[i];
+            int j = i - 1;
+            for (; j >= 0; j--) {
+                if(array[j] > temp) {
+                    break;
+                }
+            }
+            array[j + 1] = temp;
+        }
+    }
+
+
+
+
     public static void shell (int[] array, int gap) {
         for(int i = 1; i < array.length; i++) {
             int temp = array[i];
@@ -72,8 +88,6 @@ public class Sort {
     public static void selectSortOptimized(int[] array) {
         int i = 0;
         int j = 0;
-
-
 
         for (i = 0; i < array.length; i++) {
             int minIndex = i;

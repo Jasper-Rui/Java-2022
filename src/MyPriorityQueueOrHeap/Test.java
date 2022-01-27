@@ -1,7 +1,7 @@
 package MyPriorityQueueOrHeap;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import javax.swing.tree.TreeNode;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,64 @@ import java.util.PriorityQueue;
  * Description:
  */
 public class Test {
+
+    public static boolean isMatch(String s, String p) {
+        int i = 0;
+        int j = 0;
+
+        while(i < s.length() && j < p.length()) {
+            if(s.charAt(i) == p.charAt(j) && j + 1 < p.length() && p.charAt(j + 1) != '*') {
+                i++;
+                j++;
+            }
+            else if(s.charAt(i) == p.charAt(j) && j + 1 < p.length() && p.charAt(j + 1) == '*') {
+                while(i < s.length() && s.charAt(i) == p.charAt(j)) {
+                    i++;
+                }
+                if(j + 2 < p.length()) j += 2;
+                else j = p.length();
+            }
+            else if(s.charAt(i) == p.charAt(j)) {
+                i++;
+                j++;
+            }
+            else if(s.charAt(i) != p.charAt(j) && j + 1 <= p.length() && p.charAt(j) == '.' && p.charAt(j + 1) != '*') {
+                i++;
+                j++;
+            }
+            else if (s.charAt(i) != p.charAt(j) && j + 1 < p.length() && p.charAt(j) == '.' && p.charAt(j + 1) == '*' && j + 1 < p.length()) {
+                return true;
+            }
+            else if(s.charAt(i) != p.charAt(j) && j + 1 < p.length() && p.charAt(j + 1) == '*' ) {
+                i++;
+                if(j + 2 < p.length()) j += 2;
+                else j = p.length();
+            }
+            else {
+                return false;
+            }
+        }
+
+        if(i != s.length() || j != p.length()) return false; //means either s or p has something left
+        return true;
+    }
+
+
     public static void main(String[] args) {
+        String s = "mississippi";
+        String p = "mis*is*ip*.";
+        System.out.println(isMatch(s, p));
+    }
+
+    public static void main5(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        HashMap<TreeNode, Integer> map = new HashMap();
+        list.add(1);
+        list.add(2);
+        //list.get();
+        //map.put();
+    }
+    public static void main2(String[] args) {
         String title = "aa bb cc";
 
         String[] array = title.split(" ");
