@@ -91,6 +91,7 @@ public class MyHeap {
         this.usedSize--;
 
         shiftDown(0, this.usedSize);
+        //
         return temp;
     }
 
