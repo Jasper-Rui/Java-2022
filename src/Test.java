@@ -9,7 +9,35 @@ import java.util.*;
  * Description:
  */
 public class Test {
+
     public static void main(String[] args) {
+        Integer[] res = new Integer[3];
+        res[0] = 0;
+        res[1] = 1;
+        res[2] = 2;
+
+
+        Integer[] ress = new Integer[3];
+        ress[0] = 0;
+        ress[1] = 2;
+        ress[2] = 1;
+
+        List<Integer[]> result = new ArrayList<Integer[]>();
+        result.add(res);
+        result.add(ress);
+        result.sort(new Comparator<Integer[]>() {
+            @Override
+            public int compare(Integer[] o1, Integer[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+
+        result.add(new Integer[] {1, 2, 3});
+        System.out.println(Arrays.equals(res, ress));
+    }
+
+
+    public static void main1(String[] args) {
         ArrayList<ArrayList<String>> competitions = new ArrayList<>();
         ArrayList<String> list1 = new ArrayList<>();
         list1.add("html");
