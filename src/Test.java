@@ -9,8 +9,90 @@ import java.util.*;
  * Description:
  */
 public class Test {
-
     public static void main(String[] args) {
+        int [][] array = {{1, 2, 3, 4, 5, 6}};
+        System.out.println(array.length);
+        int col = array.length - 1; // 0
+        int row = array[0].length - 1; // 5
+        List<Integer> result = new ArrayList<Integer>();
+        helper(array, 0, col, row, result);
+        System.out.println(result);
+    }
+
+    public static void main22(String[] args) {
+        int[][] array = {{1,2,3,4}, {12,13,14,5}, {11,16,15,6}, {10,9,8,7}};
+        int[][] array2 = {
+                {1,2,3,4},
+                {10,11,12,5},
+                {9,8,7,6}};
+        List<Integer> result = new ArrayList<Integer>();
+        helper(array2, 0, 2, 3, result);
+        System.out.println(result);
+    }
+
+    public static void helper(int[][] array, int index, int col, int row, List<Integer> result) {
+        if(index > col) {
+            return;
+        }
+
+        if(index > row) {
+            return;
+        }
+        //add first row
+        for(int i = index; i <= row; i++) {
+            result.add(array[index][i]);
+        }
+
+        //remove duplicate
+        result.remove(result.size() - 1);
+
+        //add first row
+        for(int i = index; i <= col; i++) {
+            result.add(array[i][row]);
+        }
+
+        //remove duplicate
+        result.remove(result.size() - 1);
+
+        //add last col
+        for(int i = row; i >= index; i--) {
+            result.add(array[col][i]);
+        }
+
+        //remove duplicate
+        result.remove(result.size() - 1);
+
+        for(int i = col; i >= index; i--) {
+            result.add(array[i][index]);
+        }
+
+        result.remove(result.size() - 1);
+        helper(array, ++index, --col, --row, result);
+    }
+
+    public static void main55(String[] args) {
+        var Jasper = "Jasper";
+        System.out.println(Jasper instanceof String);
+
+        int flg1 = -99 >> 31;
+        int flg2 = 99 >> 31;
+        System.out.println(flg1);
+        System.out.println(flg2);
+    }
+
+    public static void main3(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.set(1, 4);
+        list.set(4, 1);
+        System.out.println(list);
+    }
+
+    public static void main2(String[] args) {
         Integer[] res = new Integer[3];
         res[0] = 0;
         res[1] = 1;
@@ -34,6 +116,12 @@ public class Test {
 
         result.add(new Integer[] {1, 2, 3});
         System.out.println(Arrays.equals(res, ress));
+
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+
+
+
     }
 
 
